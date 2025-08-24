@@ -29,16 +29,16 @@ export class MemStorage implements IStorage {
   private async initializeWallpapers() {
     // Initialize with the original wallpaper URLs from the design
     const wallpaperUrls = [
-      'https://iili.io/dHJ6Ho7.jpg',
-      'https://iili.io/dHJSs7p.jpg',
-      'https://iili.io/dHJ4pN2.jpg',
-      'https://iili.io/KJ8thGV.jpg',
-      'https://iili.io/dHJ6dPe.jpg',
-      'https://iili.io/dHJ6JV9.jpg',
-      'https://iili.io/dHJ4tSf.jpg',
-      'https://iili.io/dHJ4ytS.jpg',
-      'https://iili.io/dHJ4ZcG.jpg',
-      'https://iili.io/d33xkiP.jpg'
+      'https://iili.io/KJrCrJt.jpg',
+      'https://iili.io/KJrCUgI.jpg',
+      'https://iili.io/KJrCksR.jpg',
+      'https://iili.io/KJrCfHX.jpg',
+      'https://iili.io/KJrBiPV.jpg',
+      'https://iili.io/KJrGrMl.jpg',
+      'https://iili.io/KJrW9v1.jpg',
+      'https://iili.io/KJrWHyF.jpg',
+      'https://iili.io/KJrW2ja.jpg',
+      'https://iili.io/KJrW3ZJ.jpg'
     ];
 
 
