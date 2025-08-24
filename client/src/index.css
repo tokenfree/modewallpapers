@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 0%);
+  --foreground: hsl(0, 0%, 75%);
+  --card: hsl(0, 0%, 10%);
+  --card-foreground: hsl(0, 0%, 75%);
+  --popover: hsl(0, 0%, 0%);
+  --popover-foreground: hsl(0, 0%, 75%);
+  --primary: hsl(0, 0%, 75%);
+  --primary-foreground: hsl(0, 0%, 0%);
+  --secondary: hsl(0, 0%, 18%);
+  --secondary-foreground: hsl(0, 0%, 75%);
+  --muted: hsl(0, 0%, 18%);
+  --muted-foreground: hsl(0, 0%, 45%);
+  --accent: hsl(0, 0%, 18%);
+  --accent-foreground: hsl(0, 0%, 75%);
+  --destructive: hsl(220, 48%, 27%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(0, 0%, 18%);
+  --input: hsl(0, 0%, 18%);
+  --ring: hsl(0, 0%, 75%);
+  --chart-1: hsl(0, 0%, 75%);
+  --chart-2: hsl(220, 48%, 27%);
+  --chart-3: hsl(280, 100%, 29%);
+  --chart-4: hsl(0, 0%, 45%);
+  --chart-5: hsl(0, 0%, 18%);
+  --sidebar: hsl(0, 0%, 10%);
+  --sidebar-foreground: hsl(0, 0%, 75%);
+  --sidebar-primary: hsl(0, 0%, 75%);
+  --sidebar-primary-foreground: hsl(0, 0%, 0%);
+  --sidebar-accent: hsl(0, 0%, 18%);
+  --sidebar-accent-foreground: hsl(0, 0%, 75%);
+  --sidebar-border: hsl(0, 0%, 18%);
+  --sidebar-ring: hsl(0, 0%, 75%);
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: Georgia, serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --radius: 0.5rem;
+  --shadow-2xs: 0px 2px 0px 0px hsl(0, 0%, 0% / 0.05);
+  --shadow-xs: 0px 2px 0px 0px hsl(0, 0%, 0% / 0.05);
+  --shadow-sm: 0px 2px 0px 0px hsl(0, 0%, 0% / 0.05), 0px 1px 2px -1px hsl(0, 0%, 0% / 0.1);
+  --shadow: 0px 2px 0px 0px hsl(0, 0%, 0% / 0.05), 0px 1px 2px -1px hsl(0, 0%, 0% / 0.1);
+  --shadow-md: 0px 2px 0px 0px hsl(0, 0%, 0% / 0.05), 0px 2px 4px -1px hsl(0, 0%, 0% / 0.1);
+  --shadow-lg: 0px 2px 0px 0px hsl(0, 0%, 0% / 0.05), 0px 4px 6px -1px hsl(0, 0%, 0% / 0.1);
+  --shadow-xl: 0px 2px 0px 0px hsl(0, 0%, 0% / 0.05), 0px 8px 10px -1px hsl(0, 0%, 0% / 0.1);
+  --shadow-2xl: 0px 2px 0px 0px hsl(0, 0%, 0% / 0.05);
+  --tracking-normal: 0em;
+  --spacing: 0.25rem;
+  
+  /* Gothic specific colors */
+  --gothic-black: hsl(0, 0%, 0%);
+  --gothic-charcoal: hsl(0, 0%, 10%);
+  --gothic-gray: hsl(0, 0%, 18%);
+  --gothic-silver: hsl(0, 0%, 75%);
+  --gothic-blue: hsl(220, 48%, 27%);
+  --gothic-purple: hsl(280, 100%, 29%);
+}
+
+.dark {
+  --background: hsl(0, 0%, 0%);
+  --foreground: hsl(0, 0%, 75%);
+  --card: hsl(0, 0%, 10%);
+  --card-foreground: hsl(0, 0%, 75%);
+  --popover: hsl(0, 0%, 0%);
+  --popover-foreground: hsl(0, 0%, 75%);
+  --primary: hsl(0, 0%, 75%);
+  --primary-foreground: hsl(0, 0%, 0%);
+  --secondary: hsl(0, 0%, 18%);
+  --secondary-foreground: hsl(0, 0%, 75%);
+  --muted: hsl(0, 0%, 18%);
+  --muted-foreground: hsl(0, 0%, 45%);
+  --accent: hsl(0, 0%, 18%);
+  --accent-foreground: hsl(0, 0%, 75%);
+  --destructive: hsl(220, 48%, 27%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(0, 0%, 18%);
+  --input: hsl(0, 0%, 18%);
+  --ring: hsl(0, 0%, 75%);
+  --chart-1: hsl(0, 0%, 75%);
+  --chart-2: hsl(220, 48%, 27%);
+  --chart-3: hsl(280, 100%, 29%);
+  --chart-4: hsl(0, 0%, 45%);
+  --chart-5: hsl(0, 0%, 18%);
+  --sidebar: hsl(0, 0%, 10%);
+  --sidebar-foreground: hsl(0, 0%, 75%);
+  --sidebar-primary: hsl(0, 0%, 75%);
+  --sidebar-primary-foreground: hsl(0, 0%, 0%);
+  --sidebar-accent: hsl(0, 0%, 18%);
+  --sidebar-accent-foreground: hsl(0, 0%, 75%);
+  --sidebar-border: hsl(0, 0%, 18%);
+  --sidebar-ring: hsl(0, 0%, 75%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased;
+    background: linear-gradient(135deg, var(--gothic-charcoal) 0%, var(--gothic-black) 50%, var(--gothic-gray) 100%);
+    color: var(--gothic-silver);
+    overflow-x: hidden;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--gothic-charcoal);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--gothic-silver);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(0, 0%, 85%);
+  }
+}
+
+@layer components {
+  .gothic-card {
+    @apply bg-gradient-to-br from-gothic-charcoal to-gothic-black border border-gothic-gray shadow-2xl;
+  }
+
+  .gothic-button {
+    @apply px-4 py-2 border border-gothic-gray transition-all duration-300 hover:bg-gothic-silver hover:text-gothic-black;
+  }
+
+  .gothic-button-primary {
+    @apply bg-gothic-blue hover:bg-blue-700 border-gothic-blue;
+  }
+
+  .gothic-texture {
+    background-image: radial-gradient(circle at 25% 25%, var(--gothic-gray) 2px, transparent 2px), radial-gradient(circle at 75% 75%, var(--gothic-charcoal) 2px, transparent 2px);
+    background-size: 40px 40px;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .animate-slide-in {
+    animation: slideIn 0.3s ease-out;
+  }
+
+  .animate-unlock {
+    animation: unlock 0.8s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+
+  @keyframes unlock {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(1.1); }
+  }
+
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  }
+}

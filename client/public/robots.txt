@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://modewallpapers.onrender.com/sitemap.xml
