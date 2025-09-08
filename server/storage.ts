@@ -34,11 +34,11 @@ export class MemStorage implements IStorage {
       'https://iili.io/KoOkaLJ.jpg',
       'https://iili.io/KJrCfHX.jpg',
       'https://iili.io/KJrBiPV.jpg',
-      'https://iili.io/KoN7HR1.jpg',
-      'https://iili.io/KoN5PR9.jpg',
-      'https://iili.io/KoN5rSS.jpg',
-      'https://iili.io/KoN5ZVj.jpg',
-      'https://iili.io/KoN73xa.jpg'
+      'https://iili.io/KxKHFfa.jpg',
+      'https://iili.io/KxFQRlS.jpg',
+      'https://iili.io/KxFQAf2.jpg',
+      'https://iili.io/KxKMACl.jpg',
+      'https://iili.io/KxFQP5X.jpg'
     ];
 
 
