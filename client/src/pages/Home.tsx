@@ -11,14 +11,15 @@ export default function Home() {
   const [isInfoPanelOpen, setIsInfoPanelOpen] = useState(false);
   const [selectedWallpaper, setSelectedWallpaper] = useState<Wallpaper | null>(null);
   const [isFullscreenOpen, setIsFullscreenOpen] = useState(false);
-
-  const { data: wallpapers = [] } = useQuery<Wallpaper[]>({
-    queryKey: ['/api/wallpapers'],
-  });
+  const [wallpapers, setWallpapers] = useState<Wallpaper[]>([]);
 
   const handleSelectWallpaper = (wallpaper: Wallpaper, index: number) => {
     setSelectedWallpaper(wallpaper);
     setIsInfoPanelOpen(true);
+  };
+  
+  const handleWallpapersLoaded = (loadedWallpapers: Wallpaper[]) => {
+    setWallpapers(loadedWallpapers);
   };
 
   useEffect(() => {
@@ -67,7 +68,10 @@ export default function Home() {
           isInfoPanelOpen ? 'mr-80' : 'mr-0'
         }`}>
           <div className="max-w-6xl mx-auto">
-            <WallpaperGallery onSelectWallpaper={handleSelectWallpaper} />
+            <WallpaperGallery 
+              onSelectWallpaper={handleSelectWallpaper} 
+              onWallpapersLoaded={handleWallpapersLoaded}
+            />
           </div>
         </main>
 
