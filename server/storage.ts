@@ -31,14 +31,14 @@ export class MemStorage implements IStorage {
     const wallpaperUrls = [
       'https://iili.io/KJrCrJt.jpg',
       'https://iili.io/KJrCUgI.jpg',
-      'https://iili.io/KJrCksR.jpg',
+      'https://iili.io/KoOkaLJ.jpg',
       'https://iili.io/KJrCfHX.jpg',
       'https://iili.io/KJrBiPV.jpg',
-      'https://iili.io/KoN7HR1.jpg',
-      'https://iili.io/KoN5PR9.jpg',
-      'https://iili.io/KoN5rSS.jpg',
-      'https://iili.io/KoN5ZVj.jpg',
-      'https://iili.io/KoN73xa.jpg'
+      'https://iili.io/KxKHFfa.jpg',
+      'https://iili.io/KxFQRlS.jpg',
+      'https://iili.io/Kxf3k5G.jpg',
+      'https://iili.io/KxKMACl.jpg',
+      'https://iili.io/KxFQP5X.jpg'
     ];
 
 
