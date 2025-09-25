@@ -13,12 +13,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Get all wallpapers
   app.get("/api/wallpapers", async (req, res) => {
     try {
-      // Set cache headers for better performance
-      res.set({
-        'Cache-Control': 'public, max-age=300, s-maxage=300', // Cache for 5 minutes
-        'ETag': 'wallpapers-v1',
-      });
-      
       const wallpapers = await storage.getAllWallpapers();
       res.json(wallpapers);
     } catch (error) {
