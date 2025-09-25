@@ -31,61 +31,75 @@ export class MemStorage implements IStorage {
     const wallpaperUrls = [
       'https://iili.io/KJrCrJt.jpg',
       'https://iili.io/KJrCUgI.jpg',
-      'https://iili.io/KoOkaLJ.jpg',
+      'https://iili.io/KJrCksR.jpg',
       'https://iili.io/KJrCfHX.jpg',
       'https://iili.io/KJrBiPV.jpg',
-      'https://iili.io/KxKHFfa.jpg',
-      'https://iili.io/KxFQRlS.jpg',
-      'https://iili.io/Kxf3k5G.jpg',
-      'https://iili.io/KxKMACl.jpg',
-      'https://iili.io/KxFQP5X.jpg'
+      'https://iili.io/KoN7HR1.jpg',
+      'https://iili.io/KoN5PR9.jpg',
+      'https://iili.io/KoN5rSS.jpg',
+      'https://iili.io/KoN5ZVj.jpg',
+      'https://iili.io/KoN73xa.jpg'
     ];
 
-
-    console.log("Analyzing wallpaper images with Gemini API...");
-    
-    // Analyze each image with Gemini API
-    for (let index = 0; index < wallpaperUrls.length; index++) {
-      const url = wallpaperUrls[index];
+    // Initialize wallpapers immediately with basic info for fast startup
+    wallpaperUrls.forEach((url, index) => {
       const id = randomUUID();
+      const wallpaper: Wallpaper = {
+        id,
+        name: `wallpaper_${String(index + 1).padStart(2, '0')}.jpg`,
+        url,
+        format: "jpg",
+        width: 1920,
+        height: 1080,
+        fileSize: null,
+        category: "wallpaper",
+        description: "Beautiful high-quality wallpaper"
+      };
+      this.wallpapers.set(id, wallpaper);
+    });
+    
+    this.initialized = true;
+    console.log("✓ Wallpapers initialized with basic info for fast startup!");
+    
+    // Enhance wallpapers with AI analysis in background (non-blocking)
+    this.enhanceWallpapersInBackground(wallpaperUrls).catch(error => {
+      console.warn("Background wallpaper analysis failed:", error);
+    });
+  }
+  
+  private async enhanceWallpapersInBackground(wallpaperUrls: string[]) {
+    console.log("Starting background wallpaper enhancement with Gemini API...");
+    
+    const wallpaperArray = Array.from(this.wallpapers.values());
+    
+    for (let index = 0; index < Math.min(wallpaperUrls.length, wallpaperArray.length); index++) {
+      const url = wallpaperUrls[index];
+      const wallpaper = wallpaperArray[index];
       
       try {
-        console.log(`Analyzing image ${index + 1}/10: wallpaper_${String(index + 1).padStart(2, '0')}.jpg`);
+        console.log(`Enhancing wallpaper ${index + 1}/${wallpaperUrls.length} in background`);
         const analysis = await analyzeImageFromUrl(url);
         
-        const wallpaper: Wallpaper = {
-          id,
-          name: `wallpaper_${String(index + 1).padStart(2, '0')}.jpg`,
-          url,
-          format: "jpg",
+        // Update the existing wallpaper with enhanced info
+        const enhancedWallpaper: Wallpaper = {
+          ...wallpaper,
           width: analysis.width,
           height: analysis.height,
-          fileSize: null,
-          category: "wallpaper",
           description: analysis.description
         };
-        this.wallpapers.set(id, wallpaper);
-        console.log(`✓ Analyzed: ${analysis.width}×${analysis.height} - ${analysis.description.substring(0, 50)}...`);
+        
+        this.wallpapers.set(wallpaper.id, enhancedWallpaper);
+        console.log(`✓ Enhanced: ${analysis.width}×${analysis.height} - ${analysis.description.substring(0, 50)}...`);
+        
+        // Add small delay to prevent API rate limiting
+        await new Promise(resolve => setTimeout(resolve, 200));
       } catch (error) {
-        console.error(`Error analyzing wallpaper ${index + 1}:`, error);
-        // Fallback to basic info if analysis fails
-        const wallpaper: Wallpaper = {
-          id,
-          name: `wallpaper_${String(index + 1).padStart(2, '0')}.jpg`,
-          url,
-          format: "jpg",
-          width: 1920,
-          height: 1080,
-          fileSize: null,
-          category: "wallpaper",
-          description: "Beautiful wallpaper with artistic elements"
-        };
-        this.wallpapers.set(id, wallpaper);
+        console.warn(`Could not enhance wallpaper ${index + 1}:`, error);
+        // Keep the basic info if enhancement fails
       }
     }
     
-    console.log("✓ Wallpaper analysis complete!");
-    this.initialized = true;
+    console.log("✓ Background wallpaper enhancement complete!");
   }
 
   // User methods
