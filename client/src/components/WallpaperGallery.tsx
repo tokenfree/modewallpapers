@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback, memo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Download } from "lucide-react";
 import { Card } from "@/components/ui/card";
@@ -7,14 +7,24 @@ import type { Wallpaper } from "@shared/schema";
 
 interface WallpaperGalleryProps {
   onSelectWallpaper: (wallpaper: Wallpaper, index: number) => void;
+  onWallpapersLoaded?: (wallpapers: Wallpaper[]) => void;
 }
 
-export default function WallpaperGallery({ onSelectWallpaper }: WallpaperGalleryProps) {
+function WallpaperGallery({ onSelectWallpaper, onWallpapersLoaded }: WallpaperGalleryProps) {
   const { data: wallpapers = [], isLoading } = useQuery<Wallpaper[]>({
     queryKey: ['/api/wallpapers'],
+    staleTime: 5 * 60 * 1000, // Cache for 5 minutes
+    gcTime: 10 * 60 * 1000, // Keep in cache for 10 minutes
   });
+  
+  // Pass wallpapers to parent when loaded
+  useEffect(() => {
+    if (wallpapers.length > 0 && onWallpapersLoaded) {
+      onWallpapersLoaded(wallpapers);
+    }
+  }, [wallpapers, onWallpapersLoaded]);
 
-  const handleDownload = async (url: string, name: string) => {
+  const handleDownload = useCallback(async (url: string, name: string) => {
     try {
       const response = await fetch(url);
       const blob = await response.blob();
@@ -29,7 +39,7 @@ export default function WallpaperGallery({ onSelectWallpaper }: WallpaperGallery
     } catch (error) {
       console.error('Download failed:', error);
     }
-  };
+  }, []);
 
   if (isLoading) {
     return (
@@ -80,6 +90,16 @@ export default function WallpaperGallery({ onSelectWallpaper }: WallpaperGallery
                 alt={wallpaper.name}
                 className="w-full h-48 object-cover group-hover:brightness-110 transition-all duration-300"
                 loading="lazy"
+                decoding="async"
+                fetchPriority={index < 8 ? "high" : "low"}
+                onError={(e) => {
+                  const img = e.target as HTMLImageElement;
+                  img.style.backgroundColor = '#374151';
+                  img.style.display = 'flex';
+                  img.style.alignItems = 'center';
+                  img.style.justifyContent = 'center';
+                  img.alt = 'Image failed to load';
+                }}
               />
               <div className="p-4">
                 <div className="flex items-center justify-between">
@@ -110,3 +130,5 @@ export default function WallpaperGallery({ onSelectWallpaper }: WallpaperGallery
     </>
   );
 }
+
+export default memo(WallpaperGallery);
