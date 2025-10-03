@@ -30,7 +30,7 @@ export class MemStorage implements IStorage {
     // Initialize with the original wallpaper URLs from the design
     const wallpaperUrls = [
       'https://iili.io/KJrCrJt.jpg',
-      'https://iili.io/KJrCUgI.jpg',
+      'https://iili.io/KW28WX4.jpg',
       'https://iili.io/KoOkaLJ.jpg',
       'https://iili.io/KJrCfHX.jpg',
       'https://iili.io/KJrBiPV.jpg',
